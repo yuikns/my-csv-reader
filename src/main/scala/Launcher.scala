@@ -4,8 +4,8 @@ import org.sunlab.utils.SparkHelper.spark
 case class Bank(age: Integer, job: String, marital: String, education: String, balance: Integer)
 
 /**
-  * @author yu
-  */
+ * @author yu
+ */
 object Launcher extends App with Awakable {
   def readBench(uri: String): (Long, Long) = {
     logger.info("starting %s", uri)

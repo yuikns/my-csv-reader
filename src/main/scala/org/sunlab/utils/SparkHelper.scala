@@ -2,8 +2,8 @@ package org.sunlab.utils
 
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
-import org.apache.spark.sql.{SQLContext, SparkSession}
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.sql.{ SQLContext, SparkSession }
+import org.apache.spark.{ SparkConf, SparkContext }
 
 object SparkHelper {
   lazy val sparkMasterURL = "local[*]"
@@ -30,9 +30,9 @@ object SparkHelper {
   }
 
   def createSparkSession(
-                          appName: String,
-                          masterUrl: String = sparkMasterURL,
-                          cfg: SparkConf => SparkConf = { in => in }): SparkSession = {
+    appName:   String,
+    masterUrl: String                 = sparkMasterURL,
+    cfg:       SparkConf => SparkConf = { in => in }): SparkSession = {
     val session = SparkSession.builder().config(sparkConf(appName, masterUrl, cfg)).getOrCreate()
     //    val hadoopConfig = session.sparkContext.hadoopConfiguration
     //    hadoopConfig.set("fs.hdfs.impl", classOf[DistributedFileSystem].getName)
