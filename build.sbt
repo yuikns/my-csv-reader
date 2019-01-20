@@ -9,6 +9,8 @@ lazy val projectScalaVersion = "2.11.12"
 lazy val hadoopVersion = "2.9.2"
 lazy val sparkVersion = "2.3.0"
 
+lazy val jacksonVersion = "2.8.7"
+
 lazy val commonSettings = Seq(
   name := projectName,
   version := projectVersion,
@@ -54,6 +56,12 @@ lazy val sparkDependencies = Seq[ModuleID](
   "org.apache.spark" %% "spark-core" % sparkVersion
 )
 
+lazy val jacksonOverrideDependencies = Seq[ModuleID](
+  "com.fasterxml.jackson.core" % "jackson-core" % jacksonVersion,
+  "com.fasterxml.jackson.core" % "jackson-databind" % jacksonVersion,
+  "com.fasterxml.jackson.module" % "jackson-module-scala_2.11" % jacksonVersion
+)
+
 
 lazy val dependenciesSettings = Seq(
   resolvers ++= Seq(
@@ -83,7 +91,8 @@ lazy val dependenciesSettings = Seq(
     "commons-net" % "commons-net" % "3.1",
     "com.google.guava" % "guava" % "11.0.2",
     "commons-codec" % "commons-codec" % "1.10"
-  ),
+  ) ++
+    jacksonOverrideDependencies,
   excludeDependencies ++= Seq(
     ExclusionRule(organization = "org.slf4j", name = "slf4j-log4j12") // ignore default logger, use logback instead
   )

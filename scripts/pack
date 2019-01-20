@@ -1,4 +1,7 @@
 #!/bin/bash
 export SBT_EXEC=sbt
 #set -o nounset -o errexit
+export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -Xmx2G"
 $SBT_EXEC compile assembly
+
+# SBT_OPTS="-Xms512M -Xmx1024M -Xss2M -XX:MaxMetaspaceSize=1024M" sbt
